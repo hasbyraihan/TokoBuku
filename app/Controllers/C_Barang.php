@@ -247,13 +247,14 @@ class C_Barang extends BaseController
             'nama' => $nama,
             'nomor_telepon' => $nomor_telepon,
             'alamat' => $alamat,
+            'kode_pos' => $kode_pos,
             'cart' => $cart,
             'total_penjualan' => $total_penjualan
         ]);
 
         return redirect()->to(base_url('/success'));
     }
-    
+
     public function success()
     {
         $session = session();

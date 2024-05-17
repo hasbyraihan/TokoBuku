@@ -15,6 +15,7 @@
             <p>Nama: <?= esc($nama) ?></p>
             <p>Nomor Telepon: <?= esc($nomor_telepon) ?></p>
             <p>Alamat: <?= esc($alamat) ?></p>
+            <p>Kode Pos: <?= esc($kode_pos) ?></p>
         </div>
         <div class="mb-4">
             <h5>Rincian Pesanan</h5>
