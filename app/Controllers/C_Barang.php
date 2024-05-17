@@ -238,15 +238,27 @@ class C_Barang extends BaseController
             $modelBarang->reduceStock($item['id_barang'], $item['quantity']);
         }
 
-        $session->remove('cart');
+        $session->set('checkout_data', [
+            'nama' => $nama,
+            'nomor_telepon' => $nomor_telepon,
+            'alamat' => $alamat,
+            'cart' => $cart,
+            'total_penjualan' => $total_penjualan
+        ]);
+
         return redirect()->to(base_url('/success'));
     }
-
-
+    
     public function success()
     {
-        return view('V_success');
+        $session = session();
+        $checkout_data = $session->get('checkout_data');
+
+        if (!$checkout_data) {
+            return redirect()->to(base_url('/'));
+        }
+
+        $session->remove('cart');
+        return view('V_success', $checkout_data);
     }
-
-
 }

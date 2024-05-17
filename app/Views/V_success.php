@@ -3,33 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Sukses</title>
+    <title>Nota Pembelian</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
     <div class="container border mb-4 mt-4 rounded shadow bg-white">
-            <!-- menu-->
-            <nav class="d-md-flex p-4">
-                <div><h1>iCashier</h1></div>
-                <div class="ms-auto my-auto">
-                    <ul class="list-inline m-0">
-                        <li class="list-inline-item mx-md-3"><a href="#Katalog" class="text-decoration-none text-dark fw-bold">Lihat Produk</a></li>
-                        <li class="list-inline-item mx-md-3"><a href="#Tentang" class="text-decoration-none text-dark fw-bold">Tentang saya</a></li>
-                    </ul> 
-                </div>
-            </nav>
-            <!--banner-->
-            <div class="px-4 mb g-4 rounded-3">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuL8i2gbEi3PkgE6-rt8d5QsXLlwF3CjogYw&s" class="w-100">
-            </div>                                          
-
-        <div class="container">
-            <h1 class="mt-5 mb-4">Checkout Sukses</h1>
-            <p>Terima kasih telah berbelanja. Pesanan Anda telah berhasil diproses.</p>
-            <a href="<?= base_url('/'); ?>" class="btn btn-primary">Kembali ke Daftar Barang</a>
+        <h1 class="mt-5 mb-4">Nota Pembelian</h1>
+        <div class="mb-4">
+            <h5>Data Pembeli</h5>
+            <p>Nama: <?= esc($nama) ?></p>
+            <p>Nomor Telepon: <?= esc($nomor_telepon) ?></p>
+            <p>Alamat: <?= esc($alamat) ?></p>
         </div>
-    </div>  
+        <div class="mb-4">
+            <h5>Rincian Pesanan</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nama Barang</th>
+                        <th>Harga</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($cart as $item): ?>
+                        <tr>
+                            <td><?= esc($item['nama_barang']) ?></td>
+                            <td>Rp <?= number_format($item['harga_barang'], 0, ',', '.') ?></td>
+                            <td><?= esc($item['quantity']) ?></td>
+                            <td>Rp <?= number_format($item['harga_barang'] * $item['quantity'], 0, ',', '.') ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3">Total</th>
+                        <th>Rp <?= number_format($total_penjualan, 0, ',', '.') ?></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <a href="<?= base_url('/') ?>" class="btn btn-primary">Kembali ke Daftar Barang</a>
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
