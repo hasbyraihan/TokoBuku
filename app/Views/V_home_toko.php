@@ -12,7 +12,7 @@
         <h1 class="mt-5 mb-4">Daftar Barang</h1>
         
         
-        <div class="mb-3">
+        <!-- <div class="mb-3">
         <form action="<?= base_url('/barang/search'); ?>" method="post" class="d-flex">
             <input type="hidden" name="perPage" value="<?= $perPage ?>">
             <input type="hidden" name="currentPage" value="<?= $currentPage ?>">
@@ -30,7 +30,7 @@
                 <option value="5" <?= ($perPage == 5) ? 'selected' : ''; ?>>5</option>
                 <option value="10" <?= ($perPage == 10) ? 'selected' : ''; ?>>10</option>
             </select>
-        </form>
+        </form> -->
         
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php foreach ($barang as $brg): ?>

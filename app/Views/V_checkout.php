@@ -20,6 +20,10 @@
             <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon" required>
         </div>
         <div class="mb-3">
+            <label for="kode_pos" class="form-label">Kode Pos</label>
+            <input type="text" class="form-control" id="kode_pos" name="kode_pos" required>
+        </div>
+        <div class="mb-3">
             <label for="alamat" class="form-label">Alamat</label>
             <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
         </div>

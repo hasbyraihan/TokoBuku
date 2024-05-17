@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use App\Models\M_barang;
+use App\Models\M_jual;
+use App\Models\M_penjualan;
 
 class C_Barang extends BaseController
 {
@@ -210,28 +212,31 @@ class C_Barang extends BaseController
         $nama = $this->request->getPost('nama');
         $nomor_telepon = $this->request->getPost('nomor_telepon');
         $alamat = $this->request->getPost('alamat');
+        $kode_pos = $this->request->getPost('kode_pos');
         $total_penjualan = 0;
 
         foreach ($cart as $item) {
             $total_penjualan += $item['harga_barang'] * $item['quantity'];
         }
 
-        $model = new \App\Models\M_penjualan();
+        $model = new M_penjualan();
         $id_penjualan = $model->insertPenjualan([
             'nama' => $nama,
             'nomor_telepon' => $nomor_telepon,
             'alamat' => $alamat,
+            'kode_pos' => $kode_pos,
             'tanggal_penjualan' => date('Y-m-d'),
             'total_penjualan' => $total_penjualan,
         ]);
 
-        $modelJual = new \App\Models\M_jual();
+        $modelJual = new M_jual();
         $modelBarang = new M_barang();
         foreach ($cart as $item) {
             $modelJual->insertJual([
                 'id_penjualan' => $id_penjualan,
                 'id_barang' => $item['id_barang'],
                 'kuantitas' => $item['quantity'],
+                'harga_jual' => $item['harga_barang']
             ]);
 
             
